@@ -1,0 +1,21 @@
+def workspace;
+Node{
+
+Stage('Checkout')
+   {
+      checkout([$class: 'GitSCM', branches: [[name: '*/master'], [name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/saikaushik-itsmyworld/Node-express-App']]])
+      workspace =pwd()
+   }
+Stage('Static Code Analysis'){
+    echo "Static Code Analysis"
+}
+Stage('Build'){
+    echo "Build the Code"
+}
+Stage('unit Testing'){
+    echo"unit testing"
+}
+Stage('Deploy'){
+    echo"deploying the code"
+}
+}
