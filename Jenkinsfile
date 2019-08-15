@@ -1,5 +1,5 @@
 def workspace;
-Node{
+node{
 
 Stage('Checkout')
    {
@@ -7,16 +7,16 @@ Stage('Checkout')
       //workspace =pwd() 
       checkout GitSCM
    }
-Stage('Static Code Analysis'){
+stage('Static Code Analysis'){
     echo "Static Code Analysis"
 }
-Stage('Build'){
+stage('Build'){
     echo "Build the Code"
 }
-Stage('unit Testing'){
+stage('unit Testing'){
     echo"unit testing"
 }
-Stage('Deploy'){
+stage('Deploy'){
     echo"deploying the code"
 }
 }
