@@ -8,7 +8,7 @@ stage('Checkout Source')
       checkout scm
    }
 stage('Install dependencies'){
-   steps{
+   step{
    sh 'npm config ls'
    sh 'npm install'
     echo "Npm Packages has been installed"
