@@ -1,3 +1,4 @@
+pipeline {
 def workspace;
 node{
 
@@ -22,5 +23,6 @@ stage('unit Testing'){
 }
 stage('Deploy'){
     echo"deploying the code"
+}
 }
 }
