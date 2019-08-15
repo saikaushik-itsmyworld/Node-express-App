@@ -8,8 +8,11 @@ stage('Checkout Source')
       checkout scm
    }
 stage('Install dependencies'){
+   steps{
+   sh 'npm config ls'
    sh 'npm install'
     echo "Npm Packages has been installed"
+   }
 }
 stage('Build'){
     echo "Build the Code"
