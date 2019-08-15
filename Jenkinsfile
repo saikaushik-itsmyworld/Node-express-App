@@ -28,7 +28,8 @@ agent any
       }
       stage('unit Testing'){
          steps {
-            echo"unit testing"
+          echo"unit testing"
+          sh 'npm test
          }
       }
       stage('Deploy'){
