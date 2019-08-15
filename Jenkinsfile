@@ -3,7 +3,7 @@ pipeline {
 agent any 
 // node {
  tools {
-      nodejs 'node'
+      nodejs "node 8.16.0"
    }
   stages {
      stage('Checkout Source')
