@@ -1,5 +1,5 @@
 pipeline {
-def workspace;
+//def workspace;//
 node{
 
 stage('Checkout Source')
