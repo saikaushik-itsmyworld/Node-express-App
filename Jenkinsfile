@@ -11,7 +11,10 @@ agent any
 stage('Install dependencies'){
    step{
    sh 'npm config ls'
+    step{
    sh 'npm install'
+    }
+    step{
     echo "Npm Packages has been installed"
    }
 }
@@ -23,7 +26,6 @@ stage('unit Testing'){
 }
 stage('Deploy'){
     echo"deploying the code"
-}
 }
 }
 }
