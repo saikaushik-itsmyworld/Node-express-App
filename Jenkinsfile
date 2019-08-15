@@ -7,8 +7,9 @@ stage('Checkout Source')
       //workspace =pwd() 
       checkout scm
    }
-stage('Static Code Analysis'){
-    echo "Static Code Analysis"
+stage('Install dependencies'){
+   sh 'npm install'
+    echo "Npm Packages has been installed"
 }
 stage('Build'){
     echo "Build the Code"
