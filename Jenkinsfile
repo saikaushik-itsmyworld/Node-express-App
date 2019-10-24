@@ -23,18 +23,24 @@ agent any
       }
       stage('Build'){
          steps {
-            echo "Build the Code"
+            echo "Building the Docker Image"
+            sh 'docker build -t myapp .'
+            sh 'docker run -p -d 1337:1337 myapp'
          }
       }
       stage('unit Testing'){
          steps {
           echo"unit testing"
          // sh 'npm test'
+         sh 'curl http://localhost:1337/'
+
          }
       }
       stage('Deploy'){
          steps {
             echo"deploying the code"
+            //sh 'Stop the running container'
+            //sh 'docker container ps -a'
          }
       }
    }
