@@ -25,20 +25,27 @@ agent any
          steps {
             echo "Building the Docker Image"
             sh 'sudo docker build -t myapp .'
-            sh 'docker run -p -d 1337:1337 myapp'
+          sh 'sudo docker tag myapp kausdeep/myapp'
+          
+          
+            
          }
       }
-      stage('unit Testing'){
+      stage('Docker Image Testing'){
          steps {
           echo"unit testing"
          // sh 'npm test'
-         sh 'curl http://localhost:1337/'
+          sh'docker image inspect kausdeep/myapp'
+          sh 'docker run -p 1337:1337 --detach kausdeep/myapp'
+          sh 'curl http://localhost:1337/'
+          sh 'docker stop $(docker ps -a -q)'
 
          }
       }
       stage('Deploy'){
          steps {
             echo"deploying the code"
+          sh 'docker push kausdeep/myapp'
             //sh 'Stop the running container'
             //sh 'docker container ps -a'
          }
