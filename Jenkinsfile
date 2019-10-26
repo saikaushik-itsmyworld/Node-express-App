@@ -1,6 +1,6 @@
 pipeline {
 //def workspace;
-agent any 
+agent Docker Agent 
 // node {
  tools {
       nodejs "node 8.11.4"
