@@ -24,7 +24,7 @@ agent any
       stage('Build'){
          steps {
             echo "Building the Docker Image"
-            sh 'docker build -t myapp .'
+            sh 'sudo docker build -t myapp .'
             sh 'docker run -p -d 1337:1337 myapp'
          }
       }
