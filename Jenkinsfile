@@ -51,4 +51,9 @@ agent any
          }
       }
    }
+  post { 
+        always { 
+            cleanWs()
+        }
+    }
 }
