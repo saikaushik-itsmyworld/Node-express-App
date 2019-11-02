@@ -41,9 +41,9 @@ agent any
 
          }
       }
-      stage('Deploy'){
+      stage('Publish'){
          steps {
-            echo"deploying the code"
+            echo"Pushing the Image to Docker registry"
           sh 'docker push kausdeep/myapp'
             //sh 'Stop the running container'
             //sh 'docker container ps -a'
