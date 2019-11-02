@@ -51,9 +51,23 @@ agent any
          }
       }
    }
-  post { 
+   post {
+      failure {
+         mail to: 'kausdeep@gmail.com',
+         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+         body: "something is wrong with ${env.BUILD_URL}"
+      }
+      success {
+         mail to: 'kausdeep@gmail.com',
+         subject: "Sucess Build Pipeline: ${currentBuild.fullDisplayName}",
+         body: "Build succeded with no Errors ${env.BUILD_URL}"
+      }
+   }
+   
+  post {   
         always { 
             cleanWs()
         }
     }
+    
 }
