@@ -35,7 +35,7 @@ agent any
          // sh 'npm test'
           sh'docker image inspect kausdeep/myapp'
           sh 'docker run -p 1337:1337 --detach kausdeep/myapp'
-          sleep(time:3,unit:"SECONDS")
+          sleep(time:10,unit:"SECONDS")
           sh 'curl http://localhost:1337/'
           sh 'docker stop $(docker ps -a -q)'
 
