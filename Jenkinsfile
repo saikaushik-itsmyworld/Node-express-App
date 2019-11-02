@@ -23,19 +23,47 @@ agent any
       }
       stage('Build'){
          steps {
-            echo "Build the Code"
+            echo "Building the Docker Image"
+            sh 'sudo docker build -t myapp .'
+          sh 'sudo docker tag myapp kausdeep/myapp'
+                     
          }
       }
-      stage('unit Testing'){
+      stage('Docker Image Testing'){
          steps {
           echo"unit testing"
          // sh 'npm test'
+          sh'docker image inspect kausdeep/myapp'
+          sh 'docker run -p 1337:1337 --detach kausdeep/myapp'
+          sleep(time:10,unit:"SECONDS")
+          sh 'curl http://localhost:1337/'
+          sh 'docker stop $(docker ps -a -q)'
+
          }
       }
-      stage('Deploy'){
+      stage('Publish'){
          steps {
-            echo"deploying the code"
+            echo"Pushing the Image to Docker registry"
+          sh 'docker push kausdeep/myapp'
+            //sh 'Stop the running container'
+            //sh 'docker container ps -a'
          }
       }
    }
+   post {
+      failure {
+         mail to: 'kausdeep@gmail.com',
+         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+         body: "something is wrong with ${env.BUILD_URL}"
+      }
+      success {
+         mail to: 'kausdeep@gmail.com',
+         subject: "Sucess Build Pipeline: ${currentBuild.fullDisplayName}",
+         body: "Build succeded with no Errors ${env.BUILD_URL}"
+      }
+      always { 
+            cleanWs()
+        }
+   }
+    
 }
