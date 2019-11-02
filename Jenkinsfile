@@ -26,9 +26,7 @@ agent any
             echo "Building the Docker Image"
             sh 'sudo docker build -t myapp .'
           sh 'sudo docker tag myapp kausdeep/myapp'
-          
-          
-            
+                     
          }
       }
       stage('Docker Image Testing'){
@@ -37,6 +35,7 @@ agent any
          // sh 'npm test'
           sh'docker image inspect kausdeep/myapp'
           sh 'docker run -p 1337:1337 --detach kausdeep/myapp'
+          sleep(time:3,unit:"SECONDS")
           sh 'curl http://localhost:1337/'
           sh 'docker stop $(docker ps -a -q)'
 
