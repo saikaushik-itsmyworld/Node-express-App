@@ -62,12 +62,9 @@ agent any
          subject: "Sucess Build Pipeline: ${currentBuild.fullDisplayName}",
          body: "Build succeded with no Errors ${env.BUILD_URL}"
       }
-   }
-   
-  post {   
-        always { 
+      always { 
             cleanWs()
         }
-    }
+   }
     
 }
