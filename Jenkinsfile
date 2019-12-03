@@ -4,7 +4,7 @@ agent any
 // node {
  tools {
       nodejs "node 8.16.0"
-      sonarqube "Sonar"
+      //sonarqube "Sonar"
    }
   stages {
      stage('Checkout Source')
@@ -43,11 +43,11 @@ agent any
          }
       }
    stage('SonarQube Analysis'){
-      echo"Analyzing the Code"
       environment {
-        scannerHome = tool 'sonar'
+        scannerHome = tool 'Sonar'
         }
       steps {
+       echo"Analyzing the Code"
        withSonarQubeEnv('sonarqube') {
             sh "${scannerHome}/bin/sonar-scanner"
         }
