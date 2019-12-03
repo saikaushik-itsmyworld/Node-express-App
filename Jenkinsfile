@@ -53,7 +53,9 @@ agent any
         }
         timeout(time: 10, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
-        }
+         }
+       }
+     }
       stage('Publish'){
          steps {
             echo"Pushing the Image to Docker registry"
