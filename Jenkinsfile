@@ -4,7 +4,7 @@ agent any
 // node {
  tools {
       nodejs "node 8.16.0"
-      SonarQube "sonar"
+      SonarQube "Sonar"
    }
   stages {
      stage('Checkout Source')
