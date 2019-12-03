@@ -4,6 +4,7 @@ agent any
 // node {
  tools {
       nodejs "node 8.16.0"
+      SonarQube "sonar"
    }
   stages {
      stage('Checkout Source')
@@ -41,6 +42,18 @@ agent any
 
          }
       }
+   stage('SonarQube Analysis'){
+      echo"Analyzing the Code"
+      environment {
+        scannerHome = tool 'sonar'
+        }
+      steps {
+       withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
       stage('Publish'){
          steps {
             echo"Pushing the Image to Docker registry"
